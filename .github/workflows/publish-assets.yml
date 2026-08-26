@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://github.com'
           scope: '@lester-nafwa' # Sets your GitHub username as the package owner namespace
 
