@@ -1,0 +1,53 @@
+@use "sass:map";
+@use "sass:color";
+@use "sass:math";
+@use "sass:meta";
+@use "sass:list";
+
+@mixin tailwind-color-palette($name, $base) {
+  $shades: (
+    50: 0.97,
+    100: 0.93,
+    200: 0.86,
+    300: 0.76,
+    400: 0.66,
+    500: 0.55,
+    600: 0.47,
+    700: 0.4,
+    800: 0.33,
+    900: 0.27,
+    950: 0.18,
+  );
+
+  $chroma-scale: (
+    50: 0.3,
+    100: 0.5,
+    200: 0.75,
+    300: 0.9,
+    400: 0.97,
+    500: 1,
+    600: 0.95,
+    700: 0.88,
+    800: 0.8,
+    900: 0.72,
+    950: 0.55,
+  );
+
+  // Extract the base color's oklch components
+  $base-l: color.channel($base, "lightness", $space: oklch);
+  $base-c: color.channel($base, "chroma", $space: oklch);
+  $base-h: color.channel($base, "hue", $space: oklch);
+
+  @each $shade, $target-l in $shades {
+    $c-scale: map.get($chroma-scale, $shade);
+    $adjusted-c: $base-c * $c-scale;
+
+    --color-#{$name}-#{$shade}: oklch(#{$target-l} #{$adjusted-c} #{$base-h});
+  }
+}
+
+@mixin apply-color-vars($palette, $mapping) {
+  @each $token, $tone in $mapping {
+    --mat-sys-#{$token}: #{map.get($palette, $tone)};
+  }
+}

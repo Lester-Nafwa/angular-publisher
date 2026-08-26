@@ -1,0 +1,25 @@
+@use "../variables";
+
+$footer-color-stop-1: rgba(4, 233, 237, 0.6);
+$footer-color-stop-2: rgba(255, 255, 255, 0);
+$footer-padding-top: 15rem;
+
+footer {
+  background-image:
+    radial-gradient(
+      ellipse at bottom right,
+      $footer-color-stop-1 0%,
+      $footer-color-stop-2 50%
+    ),
+    url("../../assets/images/footer/footer-bg.svg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  padding-top: $footer-padding-top;
+
+  .footer-bottom {
+    color: variables.$color-white;
+  }
+}

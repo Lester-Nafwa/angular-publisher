@@ -1,0 +1,15 @@
+section {
+  &.bg-gradient-primary {
+    background:
+      radial-gradient(
+        111.32% 156.14% at 21.77% -35.14%,
+        rgba(4, 233, 237, 0.6) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      linear-gradient(
+        230.82deg,
+        rgba(0, 66, 200, 0.18) 1.96%,
+        rgba(0, 66, 200, 0) 50.92%
+      );
+  }
+}

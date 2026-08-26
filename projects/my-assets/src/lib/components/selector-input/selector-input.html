@@ -1,0 +1,51 @@
+ <section>
+  <button
+    type="button"
+    class="flex items-center justify-between w-full py-2 px-3 bg-white border-[0.807px] border-black/30 rounded-xl cursor-pointer transition-opacity duration-150 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-(--color-primary) focus-visible:outline-offset-2"
+    aria-label="Select filter"
+    #menuTrigger
+    [matMenuTriggerFor]="productMenu"
+  >
+ 
+          <mat-icon class="font-['Material_Icons_Outlined']! relative flex items-center w-8.75 h-8.5 shrink-0" aria-hidden="true" data-id="selected-product-logo">filter_alt</mat-icon>
+    @if (!selectedOption()) {
+      <span class="font-semibold text-black/50 text-xs leading-normal">Filter by</span>
+    }
+
+    <span
+      class="flex-1 mx-3 font-bold text-[12.906px] text-black text-left leading-normal truncate"
+      data-id="selected-product"
+    >
+      {{ selectedOption() }}
+    </span>
+
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+   <mat-menu #productMenu="matMenu" class="mt-2 p-1 product-selector-dropdown">
+    <div class="p-3 font-bold text-sm"><span>Filter Requests</span></div>
+  @for (option of options(); track option; let first = $first) {
+    <button
+      type="button"
+      role="menuitemradio"
+      [attr.aria-checked]="option === selectedOption()"
+      class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors duration-100 border-black/10 min-w-[20em]"
+      [class.border-t]="!first"
+      [class.bg-(--color-primary)/10]="option === selectedOption()"
+      [class.hover:bg-black/5]="option !== selectedOption()"
+      [style.width.px]="menuTrigger.offsetWidth"
+      (click)="onSelect(option)"
+    >
+      <span class="text-sm leading-normal text-black whitespace-nowrap">
+        {{ option }}
+      </span>
+
+      @if (option === selectedOption()) {
+        <mat-icon class="text-(--color-primary)! shrink-0 text-lg">check_circle</mat-icon>
+      } @else {
+        <mat-icon class="text-black/10! shrink-0 text-lg">radio_button_unchecked</mat-icon>
+      }
+    </button>
+  }
+</mat-menu>
+</section>

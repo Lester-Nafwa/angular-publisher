@@ -1,0 +1,20 @@
+.mat-vertical-content-container {
+  margin: 0 !important;
+}
+
+.mat-stepper-vertical,
+.mat-stepper-horizontal {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mat-stepper-vertical:not(.go-live-stepper) .mat-step-header,
+.mat-stepper-horizontal:not(.go-live-stepper) .mat-step-header {
+  background: transparent !important;
+  display: none !important;
+}
+
+.mat-stepper-vertical-line::before {
+  border-left-width: 0 !important;
+}

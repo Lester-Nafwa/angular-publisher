@@ -1,0 +1,17 @@
+@use "@angular/material" as mat;
+
+$inm-selected-radio-color: green;
+$inm-radio-layer-size: 28px;
+
+:root {
+  @include mat.radio-overrides(
+    (
+      selected-icon-color: $inm-selected-radio-color,
+      selected-hover-icon-color: $inm-selected-radio-color,
+      selected-pressed-icon-color: $inm-selected-radio-color,
+      selected-focus-icon-color: $inm-selected-radio-color,
+      checked-ripple-color: $inm-selected-radio-color,
+      state-layer-size: $inm-radio-layer-size,
+    )
+  );
+}

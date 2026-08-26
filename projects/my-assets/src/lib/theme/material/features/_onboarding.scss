@@ -1,0 +1,74 @@
+@use "../variables";
+
+.submit-request-dialog-panel {
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-shape: 1rem;
+    max-width: 24rem;
+  }
+
+  .mat-mdc-dialog-surface {
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: 1rem !important;
+  }
+}
+
+.submit-request-dialog__glow {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 10rem;
+  background: radial-gradient(
+    ellipse at top,
+    color-mix(in srgb, #{variables.$color-primary} 12%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+/* Reject / review dialogs */
+.request-review-dialog-panel {
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-shape: 1.25rem;
+    width: 100%;
+    max-width: 25rem;
+  }
+
+  .mat-mdc-dialog-surface {
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: 1.25rem !important;
+    background: transparent !important;
+  }
+}
+
+.request-review-dialog {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 18%, transparent) -8.17%,
+      transparent 58.94%
+    ),
+    radial-gradient(
+      67% 41% at 6.36% -14.15%,
+      color-mix(in srgb, var(--color-secondary) 60%, transparent) 17.38%,
+      transparent 100%
+    ),
+    variables.$color-white;
+}
+
+.documents-upload-progress__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 300ms;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--color-secondary) 0,
+    var(--color-primary) 11px,
+    var(--color-primary-950) 11px,
+    var(--color-primary) 22px
+  );
+}
+.mat-mdc-paginator-container{
+  background: #{variables.$color-white};
+}

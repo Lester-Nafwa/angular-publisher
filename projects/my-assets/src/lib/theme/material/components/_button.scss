@@ -1,0 +1,83 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../functions";
+@use "../variables";
+
+// Generate light/dark on-color
+// M3 uses tone 40 (primary) and tone 80 (on container) for light,
+@mixin _button-tokens($base-color, $on-light, $on-dark) {
+  // Extract tonal palette for container colors
+  $palette: functions.m3-tonal-palette($base-color);
+
+  @include mat.fab-overrides(
+    (
+      container-color: #{map.get($palette, 90)},
+      foreground-color: #{map.get($palette, 10)},
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      filled-container-color: #{map.get($palette, 40)},
+      filled-label-text-color: #{$on-light},
+      outlined-label-text-color: #{map.get($palette, 40)},
+      outlined-outline-color: #{map.get($palette, 40)},
+      text-label-text-color: #{map.get($palette, 40)},
+
+      // State layer colors (ripple, hover, focus)
+      filled-state-layer-color: #{$on-light},
+      filled-ripple-color: #{map.get($palette, 40)},
+      outlined-state-layer-color: #{map.get($palette, 40)},
+      outlined-ripple-color: #{map.get($palette, 80)},
+      text-state-layer-color: #{map.get($palette, 40)},
+      text-ripple-color: #{map.get($palette, 80)},
+    )
+  );
+}
+
+@mixin _button-tokens-dark($base-color, $on-light, $on-dark) {
+  $palette: functions.m3-tonal-palette($base-color);
+
+  @include mat.fab-overrides(
+    (
+      container-color: #{map.get($palette, 30)},
+      foreground-color: #{map.get($palette, 90)},
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      filled-container-color: #{map.get($palette, 80)},
+      filled-label-text-color: #{map.get($palette, 20)},
+      outlined-label-text-color: #{map.get($palette, 80)},
+      outlined-outline-color: #{map.get($palette, 80)},
+      text-label-text-color: #{map.get($palette, 80)},
+
+      // State layer colors (ripple, hover, focus)
+      filled-state-layer-color: #{map.get($palette, 20)},
+      filled-ripple-color: #{map.get($palette, 70)},
+      //outlined-state-layer-color: #{map.get($palette, 0)},
+      outlined-ripple-color: #{map.get($palette, 0)},
+      text-state-layer-color: #{map.get($palette, 80)},
+      text-ripple-color: #{map.get($palette, 20)},
+    )
+  );
+}
+
+// Generate a complete custom button color class
+@mixin button-color($name, $base-color, $on-light: #fff, $on-dark: #000) {
+  .mat-#{$name} {
+    @include _button-tokens($base-color, $on-light, $on-dark);
+
+    [data-theme="dark"] & {
+      @include _button-tokens-dark($base-color, $on-light, $on-dark);
+    }
+  }
+}
+
+// Register all custom colors
+@include button-color("success", variables.$color-success);
+@include button-color("warning", variables.$color-warning, #000, #fff);
+@include button-color("info", variables.$color-info);
+@include button-color("accent", variables.$color-accent);
+@include button-color("error-alt", variables.$color-error);

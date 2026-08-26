@@ -1,0 +1,61 @@
+@reference "tailwindcss";
+
+.list-group {
+  @apply flex flex-col rounded-lg border border-gray-200 bg-white dark:border-neutral-700 dark:bg-neutral-900;
+
+  &.list-group-flush {
+    @apply rounded-none border-0 bg-transparent;
+
+    .list-group-item {
+      @apply border-x-0 border-t-0 rounded-none last:border-b-0;
+    }
+  }
+
+  &.list-group-horizontal {
+    @apply flex-row;
+
+    .list-group-item {
+      @apply -mr-px mt-0 first:rounded-t-none first:rounded-l-lg last:rounded-b-none last:rounded-r-lg;
+    }
+  }
+
+  .list-group-item {
+    @apply relative -mt-px block border border-gray-200 px-4 py-3 text-sm text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200;
+
+    &.list-group-item-action {
+      @apply w-full text-left transition-all hover:bg-gray-50 focus:bg-gray-50 focus:outline-none dark:hover:bg-neutral-800 dark:focus:bg-neutral-800;
+    }
+    &.active {
+      @apply z-10 border-primary-600 bg-primary-600 text-white dark:border-primary-600 dark:bg-primary-600 dark:text-white;
+    }
+    &.disabled,
+    &:disabled {
+      @apply pointer-events-none opacity-50 bg-gray-50 text-gray-400 dark:bg-neutral-800/50 dark:text-neutral-500;
+    }
+
+    &.list-group-item-primary {
+      @apply bg-primary-50 text-primary-800 dark:bg-primary-950/40 dark:text-primary-400;
+    }
+    &.list-group-item-secondary {
+      @apply bg-secondary-50 text-secondary-800 dark:bg-neutral-800/40 dark:text-neutral-400;
+    }
+    &.list-group-item-success {
+      @apply bg-success-50 text-success-800 dark:bg-success-950/40 dark:text-success-400;
+    }
+    &.list-group-item-danger {
+      @apply bg-error-50 text-error-800 dark:bg-error-950/40 dark:text-error-400;
+    }
+    &.list-group-item-warning {
+      @apply bg-warning-50 text-warning-800 dark:bg-warning-950/40 dark:text-warning-400;
+    }
+    &.list-group-item-info {
+      @apply bg-info-50 text-info-800 dark:bg-info-950/40 dark:text-info-400;
+    }
+    &.list-group-item-light {
+      @apply bg-gray-100 text-gray-800 dark:bg-neutral-800 dark:text-neutral-200;
+    }
+    &.list-group-item-dark {
+      @apply bg-gray-800 text-white dark:bg-white dark:text-neutral-800;
+    }
+  }
+}

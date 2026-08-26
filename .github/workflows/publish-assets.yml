@@ -1,0 +1,46 @@
+name: Publish Shared Assets Library
+
+on:
+  push:
+    branches:
+      - main  # Runs automatically whenever you push code changes to the main branch
+
+jobs:
+  publish-library:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Critical permission required to host packages on GitHub
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://github.com'
+          scope: '@lester-nafwa' # Sets your GitHub username as the package owner namespace
+
+      - name: Install Workspace Dependencies
+        run: npm ci
+
+      - name: Build the Assets Library
+        run: npx ng build my-assets --configuration=production
+
+      # GitHub Packages strictly requires package names to be scoped (e.g., @lester-nafwa/my-assets)
+      - name: Inject GitHub Scope into Library package.json
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = 'dist/my-assets/package.json';
+            const pkg = JSON.parse(fs.readFileSync(path, 'utf8'));
+            pkg.name = '@lester-nafwa/' + pkg.name;
+            fs.writeFileSync(path, JSON.stringify(pkg, null, 2));
+          "
+
+      - name: Publish to GitHub Packages Registry
+        run: cd dist/my-assets && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Seamless authentication handled directly by GitHub

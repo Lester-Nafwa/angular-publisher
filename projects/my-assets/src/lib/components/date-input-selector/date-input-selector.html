@@ -1,0 +1,70 @@
+ <section class="flex gap-5 items-center">
+  <div>
+    <button
+      type="button"
+      class="flex items-center justify-between w-full py-2 px-3 bg-white border border-black/30 rounded-xl cursor-pointer transition-opacity duration-150 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-(--color-primary) focus-visible:outline-offset-2"
+      aria-label="Select start date"
+      #startDateTrigger="matMenuTrigger"
+      [matMenuTriggerFor]="startDateMenu"
+    >
+    <div class="flex gap-1  items-center min-w-30">
+    
+        <mat-icon class="relative flex items-center w-4 h-4  shrink-0" aria-hidden="true" data-id="selected-product-logo">calendar_today</mat-icon>
+ 
+     <span
+  class="flex-1  font-bold text-xs text-left leading-normal"
+  [class.text-black]="selectedStartDate()"
+  [class.text-black/50]="!selectedStartDate()"
+  data-id="selected-product"
+>
+  {{ selectedStartDate() ? (selectedStartDate() | date: "mediumDate") : "Start Date" }}
+</span>
+</div>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+
+    <mat-menu #startDateMenu="matMenu" class="mt-2 p-0 product-selector-dropdown">
+      <mat-card class="demo-inline-calendar-card" (click)="$event.stopPropagation()">
+        <mat-calendar
+          [selected]="selectedStartDate()"
+          [maxDate]="selectedEndDate()"
+          (selectedChange)="onStartDateChange($event); startDateTrigger.closeMenu()"
+        ></mat-calendar>
+      </mat-card>
+    </mat-menu>
+  </div>
+ 
+  <span>-</span>
+
+  <div>
+    <button
+      type="button"
+      class="flex items-center justify-between w-full py-2 px-3 bg-white border-[0.807px] border-black/30 rounded-xl cursor-pointer transition-opacity duration-150 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-(--color-primary) focus-visible:outline-offset-2"
+      aria-label="Select end date"
+      #endDateTrigger="matMenuTrigger"
+      [matMenuTriggerFor]="endDateMenu"
+    >
+    <div class="flex gap-1  items-center min-w-30">
+ 
+        <mat-icon class="relative flex items-center  shrink-0" aria-hidden="true" data-id="selected-product-logo">calendar_today</mat-icon>
+ 
+      <span   class="flex-1 font-bold text-xs text-left leading-normal" [class.text-black]="selectedStartDate()"
+  [class.text-black/50]="!selectedEndDate()">
+        {{ selectedEndDate() ? (selectedEndDate() | date: "mediumDate") : "End Date" }}
+      </span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </div>
+    </button>
+    
+    <mat-menu #endDateMenu="matMenu" class="mt-2 product-selector-dropdown">
+      <mat-card class="inline-calendar-card " (click)="$event.stopPropagation()">
+        <mat-calendar
+        class="w-full!"
+          [selected]="selectedEndDate()"
+          [minDate]="selectedStartDate()"
+          (selectedChange)="onEndDateChange($event); endDateTrigger.closeMenu()"
+        ></mat-calendar>
+      </mat-card>
+    </mat-menu>
+  </div>
+</section>

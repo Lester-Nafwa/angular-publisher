@@ -1,0 +1,15 @@
+.mat-mdc-tab-nav-bar {
+  border-bottom: none;
+
+  .mat-mdc-tab-header-pagination {
+    border-bottom: none;
+  }
+
+  .mat-mdc-tab-link-container {
+    border-bottom: none;
+  }
+
+  .mat-mdc-tab-link.mdc-tab--active .mdc-tab__text-label {
+    font-weight: 700;
+  }
+}
