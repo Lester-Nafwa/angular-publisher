@@ -1,15 +1,16 @@
 {
-  "name": "my-assets",
-  "version": "0.0.1",
+  "name": "@lester-nafwa/my-assets",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Lester-Nafwa/angular-publisher.git"
   },
-  "peerDependencies": {
-    "@angular/common": "^22.1.0",
-    "@angular/core": "^22.1.0",
-    "@angular/material": "^18.0.0"
-  },
+"peerDependencies": {
+  "@angular/common": "^22.1.0",
+  "@angular/core": "^22.1.0",
+  "@angular/material": "^22.1.0",
+  "@angular/cdk": "^22.1.0"
+},
   "dependencies": {
     "tslib": "^2.3.0"
   },

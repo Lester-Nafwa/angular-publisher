@@ -8,9 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
+  "private": false,
   "packageManager": "npm@11.19.0",
   "dependencies": {
+    "@angular/cdk": "^22.1.3",
     "@angular/common": "^22.1.0",
     "@angular/compiler": "^22.1.0",
     "@angular/core": "^22.1.0",

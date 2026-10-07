@@ -1,28 +1,29 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "paths": {
+      "my-ng-materials": ["./dist/my-ng-materials"],
+      "test-lib": ["./dist/test-lib"],
       "my-assets": ["./dist/my-assets"]
     },
-    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
+    "target": "es2022",
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": false,
     "module": "preserve"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
   },
   "files": [],
+  "include": [],
   "references": [
     {
       "path": "./tsconfig.app.json"
@@ -31,10 +32,22 @@
       "path": "./tsconfig.spec.json"
     },
     {
+      "path": "./projects/my-ng-materials/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/my-ng-materials/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/test-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/test-lib/tsconfig.spec.json"
+    },
+    {
       "path": "./projects/my-assets/tsconfig.lib.json"
     },
     {
-      "path": "./projects/my-assets/tsconfig.spec.json"
+      "path": "./projects/my-assets/tsconfig.spec.json" 
     }
   ]
 }
