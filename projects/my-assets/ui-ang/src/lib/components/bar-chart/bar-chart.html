@@ -1,0 +1,12 @@
+<div class="flex flex-col h-full gap-4">
+
+  <div #chartContainer class="w-full h-full flex-1 relative">
+    @for (s of series(); track s.key) {
+      <div
+        #colorProbe
+        [class]="s.colorClass + ' display-none'"
+        [attr.data-series-key]="s.key"
+      ></div>
+    }
+  </div>
+</div>

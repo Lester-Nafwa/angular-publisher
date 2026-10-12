@@ -1,0 +1,55 @@
+<section
+  class="bg-white shadow-sm px-3 py-2 border border-black/10 rounded-lg w-full flex items-center gap-2"
+>
+  @if (leftIcon() === "sort") {
+    <inm-icon-sort class="mx-1 text-black/60" [width]="16" [height]="16" />
+  } @else {
+    <mat-icon class="mx-1 text-black/60">{{ leftIcon() }}</mat-icon>
+  }
+
+  <mat-select
+    class="w-full"
+    [value]="selectedValue()"
+    [placeholder]="placeholder()"
+    [aria-label]="placeholder()"
+    [disabled]="disabled()"
+    (selectionChange)="onSelectionChange($event.value)"
+  >
+    <mat-select-trigger>
+      <span class="inline-flex items-center gap-2">
+        @if (selectedOptionDetails()?.iconUrl; as selectedIcon) {
+          <img class="w-5 h-5 shrink-0" [src]="selectedIcon" alt="" />
+        }
+
+        @if (selectedOptionDetails(); as selected) {
+          @if (prefix()) {
+            {{ prefix() }}:
+          }
+          <span class="truncate">{{ selected.label }}</span>
+        }
+      </span>
+    </mat-select-trigger>
+
+    @for (option of options(); track option.value) {
+      <mat-option
+        [value]="option.value"
+        class="hover:bg-(--color-primary) hover:text-white transition-colors duration-100 cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--color-primary) bg-white!"
+        [class]="{
+          'bg-(--color-primary)/10': option.value === selectedValue(),
+        }"
+      >
+        <div class="flex items-center gap-2 min-w-0">
+          @if (option.iconUrl; as optionIcon) {
+            <img
+              class="w-5 h-5 shrink-0"
+              [src]="optionIcon"
+              [alt]="option.label"
+            />
+          }
+
+          <span class="truncate min-w-1">{{ option.label }}</span>
+        </div>
+      </mat-option>
+    }
+  </mat-select>
+</section>

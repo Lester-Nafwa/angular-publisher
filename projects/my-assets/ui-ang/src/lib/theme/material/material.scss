@@ -1,0 +1,99 @@
+@use "@angular/material" as mat;
+@use "material-theme" as inmThemeColor;
+
+@use "variables";
+
+@use "components/components";
+@use "layouts/layouts";
+@use "features/features";
+
+@include mat.core();
+
+html {
+  color-scheme: light;
+
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: inmThemeColor.$primary-palette,
+        tertiary: inmThemeColor.$tertiary-palette,
+      ),
+      typography: variables.$font-sans,
+      density: variables.$density,
+    )
+  );
+
+  @media (prefers-contrast: more) {
+    @include inmThemeColor.high-contrast-overrides(light);
+  }
+
+  &[data-theme="dark"] {
+    color-scheme: dark;
+
+    @include mat.theme(
+      (
+        color: (
+          theme-type: dark,
+          primary: inmThemeColor.$primary-palette,
+          tertiary: inmThemeColor.$tertiary-palette,
+        ),
+        typography: variables.$font-sans,
+        density: variables.$density,
+      )
+    );
+
+    @media (prefers-contrast: more) {
+      @include inmThemeColor.high-contrast-overrides(dark);
+    }
+  }
+}
+
+.bg-regular {
+  @include mat.form-field-overrides(
+    (
+      filled-container-color: transparent,
+      filled-input-text-placeholder-color: variables.$color-black-20,
+      filled-active-indicator-color: variables.$color-black-10,
+      filled-hover-active-indicator-color: variables.$color-black-10,
+      filled-focus-active-indicator-color: variables.$color-primary,
+    )
+  );
+
+  @include mat.select-overrides(
+    (
+      panel-background-color: variables.$color-white,
+      enabled-arrow-color: variables.$color-gray-400,
+      focused-arrow-color: variables.$color-primary,
+      placeholder-text-color: variables.$color-gray-400,
+    )
+  );
+}
+
+.btn-regular {
+  @include mat.button-overrides(
+    (
+      filled-container-shape: 5px,
+    )
+  );
+}
+
+@include mat.tabs-overrides(
+  (
+    active-label-text-color: variables.$color-primary-darker,
+    active-focus-label-text-color: variables.$color-primary-darker,
+    active-hover-label-text-color: variables.$color-primary-darker,
+  )
+);
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: variables.$font-sans;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}

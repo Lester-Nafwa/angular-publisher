@@ -1,0 +1,140 @@
+<div
+  #chartRoot
+  class="relative flex h-full min-h-0 w-full flex-col overflow-visible rounded-lg border border-neutral-100 bg-white"
+  data-testid="line-trend-chart"
+>
+  <header class="flex shrink-0 flex-col gap-3 px-6 py-3">
+    <h3 class="text-base leading-normal font-bold text-black">
+      {{ title() }}
+    </h3>
+
+    <ul class="flex flex-wrap items-center gap-3" aria-label="Chart legend">
+      @for (item of series(); track item.id) {
+        <li class="flex items-center gap-3">
+          <span
+            class="size-[9px] shrink-0 rounded-sm"
+            [style.background-color]="item.color"
+            aria-hidden="true"
+          ></span>
+          <span class="text-xs leading-4 font-medium text-neutral-500">
+            {{ item.id }}
+          </span>
+        </li>
+      }
+    </ul>
+  </header>
+
+  <div class="flex min-h-0 flex-1 flex-col overflow-visible bg-primary/10">
+    <div class="relative min-h-0 flex-1 overflow-visible px-6 pt-3">
+      <div
+        #chartHost
+        class="absolute inset-x-6 top-3 bottom-0 overflow-visible"
+        data-testid="line-trend-chart-canvas"
+      ></div>
+    </div>
+
+    <div class="flex h-4.5 shrink-0 items-center px-6 pb-3">
+      @for (category of categories(); track category.label; let last = $last) {
+        <div
+          class="flex h-5.5 flex-1 items-center justify-center px-0.5"
+          [ngClass]="{ 'border-r': !last, 'border-black/10': !last }"
+        >
+          <span
+            class="text-xs leading-normal font-medium whitespace-nowrap text-dark-blue"
+          >
+            {{ category.label }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (tooltip(); as tip) {
+    <div
+      class="pointer-events-none absolute z-20 flex -translate-x-1/2 -translate-y-full flex-col items-center"
+      [style.left.px]="tip.x"
+      [style.top.px]="tip.y - 8"
+      data-testid="line-trend-chart-tooltip"
+      role="tooltip"
+    >
+      @if (tooltipVariant() === "compact") {
+        <div
+          class="flex min-w-25 flex-col overflow-hidden rounded-md bg-[#0042c8] text-white shadow-lg"
+        >
+          <div class="flex flex-col gap-1 px-2 py-2.5">
+            <p class="text-[9px] leading-normal font-medium whitespace-nowrap">
+              {{ tip.seriesId }}
+            </p>
+            <p
+              class="text-sm leading-tight font-bold whitespace-nowrap"
+              data-testid="line-trend-chart-tooltip-metric"
+            >
+              {{ tip.metric }}
+            </p>
+          </div>
+
+          <div class="border-t border-white/20 bg-[#000d3a] px-3 py-2">
+            <p
+              class="text-[8px] leading-normal whitespace-nowrap text-white/80"
+              data-testid="line-trend-chart-tooltip-date"
+            >
+              Date: {{ tip.date }}
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="h-0 w-0 border-x-[7px] border-t-[7px] border-x-transparent border-t-[#000d3a]"
+          aria-hidden="true"
+        ></div>
+      } @else {
+        <div
+          class="flex flex-col items-start justify-center overflow-hidden rounded-md bg-black"
+        >
+          <div
+            class="flex w-full flex-col items-start justify-center gap-[3px] p-3"
+          >
+            <div
+              class="flex items-center gap-[3px] rounded-full border border-white/10 bg-white/10 py-[3px] pr-2.5 pl-[3px]"
+            >
+              <span
+                class="size-[9px] shrink-0 rounded-full"
+                [style.background-color]="tip.color"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="text-[9px] leading-normal whitespace-nowrap text-white"
+              >
+                {{ tip.seriesId }}
+              </span>
+            </div>
+
+            <p class="text-[9px] leading-normal text-white/60">
+              {{ tooltipCopy().line1 }}<br />
+              <span class="text-white">{{ tooltipCopy().line2 }}</span>
+            </p>
+
+            <p
+              class="text-3xl leading-normal font-medium whitespace-nowrap text-white"
+            >
+              {{ tip.metric }}
+            </p>
+          </div>
+
+          <div
+            class="flex w-full flex-col items-start justify-center border-t border-white/20 p-3"
+          >
+            <p class="text-xs leading-normal whitespace-nowrap text-white">
+              {{ tip.date }}
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="h-0 w-0 border-x-[7px] border-t-[7px] border-x-transparent border-t-black"
+          aria-hidden="true"
+        ></div>
+      }
+    </div>
+  }
+</div>

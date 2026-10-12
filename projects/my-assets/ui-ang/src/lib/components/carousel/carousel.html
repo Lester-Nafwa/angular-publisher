@@ -1,0 +1,161 @@
+<section
+  class="relative"
+  aria-roledescription="carousel"
+  [class.cursor-grabbing]="isDragging()"
+  [attr.aria-label]="ariaLabel()"
+  (pointerenter)="onPointerEnter()"
+  (pointerleave)="onPointerLeave($event)"
+>
+  @if (showArrows()) {
+    @if (snapPoints().length > 1) {
+      <button
+        class="absolute z-10 flex items-center justify-center w-11 h-11 rounded-full border border-white/20 bg-white/90 text-zinc-800 shadow-md backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-lg hover:scale-105 active:scale-95 disabled:opacity-20 disabled:pointer-events-none"
+        aria-label="Previous slide"
+        data-testid="prev-button"
+        [class.top-half]="axis() === 'x'"
+        [class.-translate-y-half]="axis() === 'x'"
+        [class.left-3]="axis() === 'x'"
+        [class.left-half]="axis() === 'y'"
+        [class.-translate-x-half]="axis() === 'y'"
+        [class.top-3]="axis() === 'y'"
+        [disabled]="!loop() && !engine.canScrollPrev() ? true : null"
+        (click)="prev()"
+      >
+        <svg
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline
+            [attr.points]="
+              axis() === 'y' ? '18 15 12 9 6 15' : '15 18 9 12 15 6'
+            "
+          />
+        </svg>
+      </button>
+
+      <button
+        class="absolute z-10 flex items-center justify-center w-11 h-11 rounded-full border border-white/20 bg-white/90 text-neutral-800 shadow-md backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-lg hover:scale-105 active:scale-95 disabled:opacity-20 disabled:pointer-events-none"
+        aria-label="Next slide"
+        data-testid="next-button"
+        [class.top-half]="axis() === 'x'"
+        [class.-translate-y-half]="axis() === 'x'"
+        [class.right-3]="axis() === 'x'"
+        [class.left-half]="axis() === 'y'"
+        [class.-translate-x-half]="axis() === 'y'"
+        [class.bottom-3]="axis() === 'y'"
+        [disabled]="!loop() && !engine.canScrollNext() ? true : null"
+        (click)="next()"
+      >
+        <svg
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline
+            [attr.points]="axis() === 'y' ? '6 9 12 15 18 9' : '9 18 15 12 9 6'"
+          />
+        </svg>
+      </button>
+    }
+  }
+
+  <div
+    #viewport
+    class="overflow-hidden"
+    data-testid="viewport"
+    [class.rounded-xl]="rounded()"
+    [class.cursor-grab]="!isDragging()"
+    [class.cursor-grabbing]="isDragging()"
+    [class.touch-pan-y]="axis() === 'x'"
+    [class.touch-pan-x]="axis() === 'y'"
+    [style.height]="axis() === 'y' ? viewportHeight() : null"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+  >
+    <!-- Track -->
+    <div
+      #track
+      class="will-change-transform"
+      [class.flex]="axis() === 'x'"
+      [class.flex-col]="axis() === 'y'"
+      [class.h-full]="axis() === 'y'"
+      [style.gap]="gap()"
+    >
+      @for (slide of slides; track $index) {
+        <div
+          class="min-w-0 shrink-0 relative transition-opacity duration-200"
+          role="group"
+          aria-roledescription="slide"
+          data-testid="slide"
+          [attr.aria-label]="'Slide ' + ($index + 1) + ' of ' + slides.length"
+          [attr.aria-hidden]="$index !== activeIndex() ? 'true' : null"
+          [class.opacity-40]="dimInactive() && $index !== activeIndex()"
+          [style.flex]="'0 0 ' + resolvedSlideSize()"
+        >
+          <ng-container [ngTemplateOutlet]="slide.template" />
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (showDots() && snapPoints().length > 1) {
+    <div
+      class="flex justify-center items-center gap-1.5 pt-3"
+      role="tablist"
+      data-testid="dots"
+      aria-label="Slide indicators"
+    >
+      @for (_ of snapPoints(); track $index) {
+        <button
+          role="tab"
+          class="h-3 rounded-full border-none p-0 cursor-pointer transition-all duration-200 hover:scale-125 bg-zinc-800/50 dark:bg-white/20"
+          data-testid="dot"
+          [class.w-3]="$index !== activeSnapIndex()"
+          [class.w-8]="$index === activeSnapIndex()"
+          [class.bg-neutral-300]="$index !== activeSnapIndex()"
+          [class.bg-neutral-800]="$index === activeSnapIndex()"
+          [attr.aria-selected]="$index === activeSnapIndex()"
+          [attr.aria-label]="'Go to page ' + ($index + 1)"
+          (click)="goToPage($index)"
+        ></button>
+      }
+    </div>
+  }
+
+  @if (showCounter()) {
+    <div
+      class="absolute bottom-3 right-3 flex items-center gap-1 bg-black/50 text-white text-xs px-2.5 py-1 rounded-full pointer-events-none tabular-nums"
+      aria-live="polite"
+      aria-atomic="true"
+      data-testid="counter"
+    >
+      <span>{{ activeSnapIndex() + 1 }}</span>
+      <span class="opacity-50">/</span>
+      <span>{{ snapPoints().length }}</span>
+    </div>
+  }
+  @if (showProgress()) {
+    <div
+      class="h-1/2 bg-neutral-200 rounded-full overflow-hidden mt-3"
+      aria-hidden="true"
+    >
+      <div
+        class="h-full bg-neutral-800 rounded-full transition-[width] duration-300 ease-in-out"
+        [style.width.%]="progressPercent()"
+      ></div>
+    </div>
+  }
+</section>

@@ -1,0 +1,49 @@
+@use "../variables";
+
+// ─── Create Sandbox App dialog panel ───────────────────────────────────────
+// Material token overrides (container-color, container-shape) live in theme.scss
+
+.create-sandbox-dialog {
+  max-height: 90vh;
+
+  .mat-mdc-dialog-container {
+    max-height: 90vh;
+    border: 1px solid variables.$color-black-20;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 84px 0
+      color-mix(in srgb, #{variables.$color-primary} 20%, transparent);
+  }
+
+  .mat-mdc-dialog-surface {
+    padding: 0 !important;
+    overflow: hidden;
+    max-height: 90vh;
+    flex-direction: column;
+  }
+}
+
+.bg-primary-gradient {
+  background: linear-gradient(139.4deg, #3462ff 34.46%, #001352 65.81%);
+}
+
+.bg-secondary-gradient {
+  background: linear-gradient(
+    27.25deg,
+    rgba(106, 245, 255, 0.2) 25.15%,
+    rgba(0, 172, 229, 0.8) 100%
+  );
+}
+
+.welcome-note {
+  background:
+    radial-gradient(
+      66.03% 56.43% at 6.36% -14.15%,
+      rgba(4, 233, 237, 0.6) 17.38%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      180.48deg,
+      rgba(0, 66, 200, 0.18) -8.17%,
+      rgba(0, 66, 200, 0) 58.94%
+    );
+}

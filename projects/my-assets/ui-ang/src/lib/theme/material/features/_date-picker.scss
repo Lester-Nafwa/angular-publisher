@@ -1,0 +1,10 @@
+@use "../variables";
+ .mat-calendar-body-label {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+ .mat-calendar{
+  background: #{variables.$color-white};
+  padding: 4px;
+  width: 100%;
+ }

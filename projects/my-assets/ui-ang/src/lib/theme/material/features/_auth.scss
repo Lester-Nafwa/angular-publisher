@@ -1,0 +1,33 @@
+section {
+  &.bg-gradient-login {
+    background:
+      radial-gradient(
+        185.46% 103.77% at -18.44% 103.77%,
+        rgba(4, 233, 237, 0.6) 17.38%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      linear-gradient(
+        251.42deg,
+        rgba(0, 66, 200, 0.18) 3.23%,
+        rgba(0, 66, 200, 0) 62.62%
+      );
+  }
+}
+
+.auth-card-shadow {
+  box-shadow: 0px 4px 84px 0px #0042c833;
+}
+
+.all-you-need-section {
+  background-image: url("../../assets/images/landing-page/all_you_need_bg.svg");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  padding-top: 80px;
+  margin-top: -72px;
+  z-index: 1;
+
+  @media (min-width: 1024px) {
+    padding-top: 160px;
+    margin-top: -152px;
+  }
+}

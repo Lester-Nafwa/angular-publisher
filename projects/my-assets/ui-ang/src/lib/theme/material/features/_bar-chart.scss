@@ -1,0 +1,26 @@
+ .bg-bar-chart-primary {
+  background: radial-gradient(50% 50% at 50% 50%, #18bab1 0%, #0042c8 100%);
+  --bar-start: #18bab1;
+  --bar-end: #0042c8;
+}
+
+.bg-bar-chart-disbursement {
+  background: radial-gradient(50% 50% at 50% 50%, #04e9ed 0%, #008881 100%);
+  --bar-start: #04e9ed;
+  --bar-end: #008881;
+}
+
+.bar-chart-axis text {
+  font-size: 0.75rem;   
+  fill: currentColor;    
+  color: #4b5563;        
+}
+
+.bar-chart-bar {
+  opacity: 1;                             
+  transition: opacity 200ms ease-in-out;   
+}
+
+.bar-chart-bar:hover {
+  opacity: 0.8;   
+}

@@ -1,0 +1,60 @@
+@use "../variables";
+
+header.admin-portal-header {
+  .admin-portal-back-btn-icon {
+    background-image: radial-gradient(
+      circle at 50% -10%,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.1)
+    );
+  }
+}
+header {
+  &.bg-gradient-primary {
+    background:
+      radial-gradient(
+        111.32% 156.14% at 21.77% -35.14%,
+        rgba(4, 233, 237, 0.6) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      linear-gradient(
+        230.82deg,
+        rgba(0, 66, 200, 0.18) 1.96%,
+        rgba(0, 66, 200, 0) 50.92%
+      );
+  }
+  &.bg-gradient-secondary {
+    background:
+      radial-gradient(
+        39.71% 151.06% at 94.1% 134.92%,
+        rgb(4, 233, 237) 0%,
+        rgba(2, 132, 135, 0) 100%
+      ),
+      radial-gradient(
+        46.63% 71.19% at 10.94% -17.99%,
+        rgb(5, 84, 243) 0%,
+        rgb(0, 32, 98) 100%
+      );
+  }
+
+  .btn-custom {
+    background: radial-gradient(
+      38.39% 38.39% at 49.78% 0%,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+  }
+  .text-tertiary {
+    color: variables.$color-dark-orange;
+  }
+}
+
+.dev-profile-menu {
+  background: radial-gradient(
+    50.91% 50% at 52.85% 0%,
+    #3462ff 0%,
+    #001352 100%
+  );
+  box-shadow: 1px 34px 30px 0px #00c8ff66 inset;
+  margin-top: -8px;
+}

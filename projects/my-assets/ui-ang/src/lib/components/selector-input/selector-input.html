@@ -1,0 +1,86 @@
+<section>
+  <button
+    type="button"
+    class="flex w-full cursor-pointer items-center justify-between rounded-xl border-[0.807px] border-black/30 bg-white px-3 py-2 transition-opacity duration-150 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
+    [attr.aria-label]="accessibleLabel()"
+    #menuTrigger
+    [matMenuTriggerFor]="productMenu"
+    [disabled]="isDisabled()"
+    (blur)="onBlur()"
+  >
+    @if (leftIcon() === "sort") {
+      <inm-icon-sort class="mx-1 text-black/60" [width]="16" [height]="16" />
+    } @else {
+      @if (selectedOption()?.iconUrl) {
+        <img
+          class="size-4 shrink-0"
+          [src]="selectedOption()?.iconUrl"
+          [alt]="selectedOption()?.label"
+        />
+      }
+    }
+
+    @if (!selectedValue()) {
+      <span class="font-semibold text-black/50 text-xs leading-normal">
+        {{ placeholder() }}
+      </span>
+    }
+
+    <span
+      class="flex-1 mx-3 font-bold text-[12.906px] text-black text-left truncate leading-normal"
+      data-id="selected-product"
+    >
+      {{ selectedOption()?.label }}
+    </span>
+
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #productMenu="matMenu" class="mt-2 p-1 product-selector-dropdown">
+    <div class="p-3 font-bold text-sm">
+      <span>{{ menuTitle() }}</span>
+    </div>
+    @for (
+      option of normalizedOptions();
+      track option.value;
+      let first = $first
+    ) {
+      <button
+        type="button"
+        role="menuitemradio"
+        class="flex justify-between items-center p-3 border-black/10 rounded-lg min-w-[20em] transition-colors duration-100 cursor-pointer"
+        [attr.aria-checked]="option.value === selectedValue()"
+        [class.border-t]="!first"
+        [class]="{
+          'bg-(--color-primary)/10': option.value === selectedValue(),
+          'hover:bg-black/5': option.value !== selectedValue(),
+        }"
+        [style.width.px]="menuTrigger.offsetWidth"
+        (click)="onSelect(option)"
+      >
+        <span class="flex items-center gap-2 min-w-0">
+          @if (option.iconUrl) {
+            <img
+              class="size-4 shrink-0"
+              [src]="option.iconUrl"
+              [alt]="option.label"
+            />
+          }
+          <span class="text-black text-sm leading-normal whitespace-nowrap">
+            {{ option.label }}
+          </span>
+        </span>
+
+        @if (option.value === selectedValue()) {
+          <mat-icon class="text-(--color-primary)! shrink-0 text-lg">
+            check_circle
+          </mat-icon>
+        } @else {
+          <mat-icon class="text-black/10! text-lg shrink-0">
+            radio_button_unchecked
+          </mat-icon>
+        }
+      </button>
+    }
+  </mat-menu>
+</section>

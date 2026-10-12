@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../functions";
+@use "../variables";
+
+$inm-menu-item-height: 52px;
+
+@include mat.menu-overrides(
+  (
+    container-color: variables.$color-white,
+    container-shape: 8px,
+  )
+);
+
+.mat-mdc-menu-panel {
+  min-width: unset !important;
+  max-width: unset !important;
+}
+.product-selector-dropdown {
+  box-shadow: 0 4px 16px color-mix(in srgb, black 12%, transparent) !important;
+  overflow: hidden;
+
+  .mat-mdc-menu-content {
+    padding: 0;
+  }
+  .mat-mdc-menu-item {
+    padding: 16px 12px;
+    min-height: $inm-menu-item-height;
+    background: white !important;
+    &:not(:last-child) {
+      border-bottom: 1px solid color-mix(in srgb, black 5%, transparent);
+    }
+  }
+}

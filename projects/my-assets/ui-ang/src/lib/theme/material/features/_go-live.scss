@@ -1,0 +1,138 @@
+section {
+  &.bg-gradient-go-live {
+    background:
+      linear-gradient(180.48deg, rgba(0, 66, 200, 0.18) -8.17%, rgba(0, 66, 200, 0) 58.94%),
+      radial-gradient(
+        66.03% 56.43% at 6.36% -14.15%,
+        rgba(4, 233, 237, 0.6) 17.38%,
+        rgba(255, 255, 255, 0) 100%
+      );
+  }
+}
+
+.go-live-stepper.mat-stepper-vertical {
+  // CSS Variables
+  --mat-stepper-container-color: transparent;
+  --go-live-step-header-height: 8rem;
+
+  // Layout & Positioning
+  position: relative;
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  column-gap: 2.5rem;
+
+  // Structural Elements
+  .mat-vertical-stepper-wrapper {
+    display: contents;
+  }
+
+  .mat-step {
+    display: contents;
+
+    // Line connector between steps
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      .mat-vertical-stepper-header::after {
+        content: "";
+        position: absolute;
+        left: 1rem;
+        top: calc(0.75rem + 2.75rem);
+        bottom: 0.5rem;
+        border-left: 1px dashed rgb(0 0 0 / 15%);
+      }
+    }
+  }
+
+  // Loop for absolute positions
+  @for $i from 1 through 4 {
+    .mat-step:nth-child(#{$i}) .mat-vertical-stepper-header {
+      top: (8 * ($i - 1)) + rem; //--go-live-step-header-height
+    }
+  }
+
+  // Stepper Header
+  .mat-vertical-stepper-header {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 0.75rem !important;
+    padding-left: 0 !important;
+    grid-column: 1;
+    width: 20%;
+    height: var(--go-live-step-header-height) !important;
+    align-items: flex-start;
+    overflow: visible;
+
+    &:hover:not([aria-disabled]),
+    &:hover[aria-disabled="false"] {
+      background-color: transparent;
+    }
+
+    &.cdk-keyboard-focused,
+    &.cdk-program-focused {
+      background: none;
+      border: none;
+    }
+  }
+
+  // Icons
+  .mat-step-icon {
+    &.mat-step-icon-state-number {
+      padding: 1rem;
+      background-color: white;
+      color: rgb(0 0 0 / 50%);
+      border: 1px solid rgb(0 0 0 / 50%);
+
+      &.mat-step-icon-selected {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
+    }
+
+    &.mat-step-icon-state-edit {
+      width: 32px;
+      height: 32px;
+
+      .mat-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  // Labels & Typography
+  .mat-step-label {
+    white-space: normal;
+    color: rgb(0 0 0 / 50%);
+    .sub-title {
+      color: rgb(0 0 0 / 25%);
+    }
+
+    &.mat-step-label-active {
+      color: black;
+      .sub-title {
+        color: rgb(0 0 0 / 45%);
+      }
+
+      &.mat-step-label-selected {
+        color: var(--color-primary);
+        font-weight: 600;
+        .sub-title {
+          color: black;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Content Container
+  .mat-vertical-content-container {
+    grid-column: 2;
+    padding-top: 0.25rem;
+  }
+
+  // Native Line
+  .mat-stepper-vertical-line::before {
+    display: none;
+  }
+}

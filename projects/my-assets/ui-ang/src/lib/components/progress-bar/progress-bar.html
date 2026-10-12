@@ -1,0 +1,22 @@
+<div
+  class="box-border overflow-hidden"
+  role="progressbar"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  data-testid="inm-progress-bar"
+  [attr.aria-valuenow]="clampedValue()"
+  [attr.aria-label]="ariaLabel()"
+  [ngClass]="roundedClass()"
+  [style.width]="width()"
+  [style.height]="height()"
+  [style.background-color]="trackColor()"
+  [style.padding]="padding()"
+>
+  <div
+    class="h-full min-w-0"
+    data-testid="inm-progress-bar-fill"
+    [ngClass]="roundedClass()"
+    [style.width.%]="clampedValue()"
+    [style.background]="fillBackground()"
+  ></div>
+</div>

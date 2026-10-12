@@ -1,0 +1,31 @@
+$color-black: #000;
+$color-white: #fff;
+$color-primary: oklch(0.5459 0.2154 262.75);
+$color-secondary: oklch(0.7128 0.1204 188.57);
+$color-tertiary: oklch(0.8458 0.1712 89.13);
+$color-accent: oklch(0.6532 0.1956 292.43);
+$color-neutral: oklch(0.3742 0.012 264.36);
+$color-info: oklch(0.6234 0.1856 248.07);
+$color-success: oklch(0.6482 0.1574 150.26);
+$color-warning: oklch(0.8403 0.1724 84.08);
+$color-error: oklch(0.5768 0.188 27.33);
+$color-dark-blue: oklch(17.2% 0.064 258.19);
+$color-dark-orange: oklch(0.7299 0.1537 63);
+$color-gray-400: oklch(71.366% 0.01926 261.373);
+$color-black-10: oklch(0% 0 0 / 0.102);
+$color-black-20: oklch(0% 0 0 / 0.2);
+$color-light-teal: oklch(0.96 0.012 229);
+$color-light-gray: oklch(0.987 0 0);
+$color-black-op-32: oklch(0% 0 0 / 0.322);
+$color-orange: oklch(72.984% 0.15368 62.996);
+$color-primary-darker: oklch(44.624% 0.2149 262.521);
+
+$font-sans:
+  "Lato", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+$font-mono:
+  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+  "Courier New", monospace;
+
+$density: 0;

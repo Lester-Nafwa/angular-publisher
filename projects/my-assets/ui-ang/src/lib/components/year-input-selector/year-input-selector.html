@@ -1,0 +1,28 @@
+<section>
+  <button
+    type="button"
+    class="flex items-center w-full gap-2 py-2 px-3 bg-white border-[0.807px] border-black/30 rounded-xl cursor-pointer transition-opacity duration-150 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-(--color-primary) focus-visible:outline-offset-2"
+    aria-label="Select year"
+    #yearTrigger="matMenuTrigger"
+    [matMenuTriggerFor]="yearMenu"
+  >
+    <mat-icon class="relative flex items-center w-4 h-4 shrink-0" aria-hidden="true">calendar_today</mat-icon>
+    <span
+      class="flex-1 font-bold text-xs text-left leading-normal"
+      [class.text-black]="selectedYear()"
+      [class.text-black/50]="!selectedYear()"
+    >
+      {{ selectedYear() ?? "Year" }}
+    </span>
+    <mat-icon class="shrink-0" aria-hidden="true">expand_more</mat-icon>
+  </button>
+
+  <mat-menu #yearMenu="matMenu" class="mt-2 p-0 product-selector-dropdown">
+    <mat-calendar
+      startView="multi-year"
+      [selected]="selectedDate()"
+      (yearSelected)="onYearSelected($event); yearTrigger.closeMenu()"
+      (click)="$event.stopPropagation()"
+    ></mat-calendar>
+  </mat-menu>
+</section>

@@ -1,0 +1,41 @@
+.context-switcher-dialog-panel {
+  margin: 0 !important;
+}
+
+.context-switcher-dialog-panel .mat-mdc-dialog-container {
+  padding: 0;
+}
+
+.context-switcher-dialog-panel .mdc-dialog__surface {
+  border-radius: 0;
+  height: 100dvh;
+  max-height: 100dvh;
+  background: rgb(255 255 255 / 80%);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  transform-origin: right center;
+  animation: context-switcher-slide-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.context-switcher-dialog-backdrop {
+  background: rgb(0 0 0 / 35%);
+}
+
+@keyframes context-switcher-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .context-switcher-dialog-panel .mdc-dialog__surface {
+    animation: none;
+  }
+}

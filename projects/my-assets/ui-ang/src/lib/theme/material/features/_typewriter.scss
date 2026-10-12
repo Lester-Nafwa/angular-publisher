@@ -1,0 +1,188 @@
+.typewriter {
+  display: inline-grid;
+  width: 10ch;
+  vertical-align: bottom;
+}
+
+.typewriter-word {
+  grid-area: 1 / 1;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 2px solid transparent;
+}
+
+.typewriter-word-0 {
+  animation:
+    type-word-0 8320ms linear infinite,
+    cursor-word-0 8320ms linear infinite;
+}
+
+.typewriter-word-1 {
+  animation:
+    type-word-1 8320ms linear infinite,
+    cursor-word-1 8320ms linear infinite;
+}
+
+.typewriter-word-2 {
+  animation:
+    type-word-2 8320ms linear infinite,
+    cursor-word-2 8320ms linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-word {
+    animation: none;
+  }
+
+  .typewriter-word:first-child {
+    width: auto;
+  }
+
+  .typewriter-word:not(:first-child) {
+    display: none;
+  }
+}
+
+/* Developers — 0% to 37.260% */
+@keyframes type-word-0 {
+  0% {
+    width: 0;
+    animation-timing-function: steps(10);
+  }
+  10.817% {
+    width: 8ch;
+  }
+  27.644% {
+    width: 8ch;
+    animation-timing-function: steps(10);
+  }
+  33.654%,
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes cursor-word-0 {
+  0%,
+  10.817% {
+    border-color: var(--color-tertiary);
+  }
+  15.024% {
+    border-color: transparent;
+  }
+  19.231% {
+    border-color: var(--color-tertiary);
+  }
+  23.438% {
+    border-color: transparent;
+  }
+  27.644%,
+  37.259% {
+    border-color: var(--color-tertiary);
+  }
+  37.260%,
+  100% {
+    border-color: transparent;
+  }
+}
+
+/* Businesses — 37.260% to 74.519% */
+@keyframes type-word-1 {
+  0%,
+  37.260% {
+    width: 0;
+  }
+  37.260% {
+    animation-timing-function: steps(10);
+  }
+  48.077% {
+    width: 8.5ch;
+  }
+  64.904% {
+    width: 8.5ch;
+    animation-timing-function: steps(10);
+  }
+  70.913%,
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes cursor-word-1 {
+  0%,
+  37.259% {
+    border-color: transparent;
+  }
+  37.260%,
+  48.077% {
+    border-color: var(--color-tertiary);
+  }
+  52.284% {
+    border-color: transparent;
+  }
+  56.490% {
+    border-color: var(--color-tertiary);
+  }
+  60.697% {
+    border-color: transparent;
+  }
+  64.904%,
+  74.518% {
+    border-color: var(--color-tertiary);
+  }
+  74.519%,
+  100% {
+    border-color: transparent;
+  }
+}
+
+/* You — 74.519% to 100% */
+@keyframes type-word-2 {
+  0%,
+  74.519% {
+    width: 0;
+  }
+  74.519% {
+    animation-timing-function: steps(3);
+  }
+  77.764% {
+    width: 3ch;
+  }
+  94.591% {
+    width: 3ch;
+    animation-timing-function: steps(3);
+  }
+  96.394%,
+  100% {
+    width: fit-content;
+  }
+}
+
+@keyframes cursor-word-2 {
+  0%,
+  74.518% {
+    border-color: transparent;
+  }
+  74.519%,
+  77.764% {
+    border-color: var(--color-tertiary);
+  }
+  81.971% {
+    border-color: transparent;
+  }
+  86.178% {
+    border-color: var(--color-tertiary);
+  }
+  90.385% {
+    border-color: transparent;
+  }
+  94.591%,
+  99.999% {
+    border-color: var(--color-tertiary);
+  }
+  100% {
+    border-color: transparent;
+  }
+}

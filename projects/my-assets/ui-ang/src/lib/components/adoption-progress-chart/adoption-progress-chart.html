@@ -1,0 +1,76 @@
+<div
+  class="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-lg border border-neutral-100 bg-white"
+  data-testid="inm-adoption-progress-chart"
+>
+  <header class="flex h-19 shrink-0 items-center px-6 py-3">
+    <h3 class="w-full text-base leading-normal font-bold text-black">
+      {{ title() }}
+    </h3>
+  </header>
+
+  <div class="flex min-h-0 flex-1 flex-col bg-primary/10">
+    <div class="flex min-h-0 flex-1 items-stretch px-6 py-3">
+      <ul
+        class="flex min-h-0 w-full flex-1 flex-col justify-between"
+        data-testid="adoption-progress-viewport"
+        [attr.aria-label]="listAriaLabel()"
+      >
+        @for (row of rows(); track row.id; let last = $last) {
+          <li
+            class="flex min-h-0 flex-1 flex-col justify-center py-3"
+            [class]="last ? '' : 'border-r border-black/10'"
+          >
+            <div class="flex w-full items-center gap-3">
+              <div
+                class="flex size-md shrink-0 items-center justify-center overflow-hidden"
+                aria-hidden="true"
+              >
+                <img
+                  class="size-full object-contain"
+                  width="35"
+                  height="35"
+                  [src]="row.iconUrl"
+                  [alt]="row.label"
+                />
+              </div>
+
+              <div
+                class="flex min-w-0 flex-1 flex-col items-start justify-center gap-1.5"
+              >
+                <p
+                  class="text-xs leading-normal font-bold whitespace-nowrap text-black/80"
+                >
+                  {{ row.label }}
+                </p>
+
+                <div
+                  class="w-full"
+                  [attr.data-testid]="'adoption-progress-bar-' + row.id"
+                >
+                  <inm-progress-bar
+                    [value]="row.percent"
+                    [fillGradient]="barGradient()"
+                    [ariaLabel]="row.ariaLabel"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="flex h-8.5 w-12.5 shrink-0 items-center justify-center self-stretch rounded-2xl bg-white px-3 py-1.5"
+                [attr.data-testid]="'adoption-progress-badge-' + row.id"
+              >
+                <p
+                  class="text-xs leading-normal whitespace-nowrap text-black/80"
+                >
+                  <span class="font-semibold">{{ row.adopted }}</span
+                  ><span class="font-semibold">/</span
+                  ><span class="font-normal">{{ row.total }}</span>
+                </p>
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

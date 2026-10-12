@@ -1,0 +1,46 @@
+input[type="checkbox"].inm-checkbox-circle {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1.5px solid #9ca3af;
+  border-radius: 9999px;
+  background-color: #fff;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &::before {
+    content: "";
+    width: 0.26rem;
+    height: 0.5rem;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: scale(0);
+    transition: transform 160ms ease;
+    transform-origin: center;
+  }
+
+  &:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &:checked::before {
+    transform: rotate(45deg) scale(1);
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
