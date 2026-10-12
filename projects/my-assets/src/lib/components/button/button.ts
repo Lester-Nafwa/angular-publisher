@@ -2,6 +2,7 @@
 import { Component, input } from "@angular/core";
 
 export type InmButtonSize = "sm" | "lg" | null;
+export type InmButtonVariant = "solid" | "subtle" | "outline"|"text" |null;
 export type InmButtonType =
   | "btn-primary"
   | "btn-secondary"
@@ -24,6 +25,8 @@ export type InmButtonType =
   | "btn-link"
   | "list-item"
   | null;
+
+  
 
 @Component({
   selector: "button[inm-button], a[inm-button], input[inm-button]",
@@ -53,6 +56,10 @@ export type InmButtonType =
     "[class.btn-light]": `inmType() === 'btn-light'`,
     "[class.btn-dark]": `inmType() === 'btn-dark'`,
     "[class.btn-link]": `inmType() === 'btn-link'`,
+    "[class.solid]": `inmVariant() === 'solid'`,
+    "[class.subtle]": `inmVariant() === 'subtle'`,
+    "[class.outline]": `inmVariant() === 'outline'`,
+    "[class.text]": `inmVariant() === 'text'`,
     "[class.btn-unstyled]": `inmType() === 'btn-unstyled'`,
     "[class.theme-primary]": `inmType() === 'theme-primary'`,
     "[class.theme-secondary]": `inmType() === 'theme-secondary'`,
@@ -75,6 +82,7 @@ export class Button {
   inmBlock = input<boolean>(false);
   inmSize = input<InmButtonSize>(null);
   inmType = input<InmButtonType>(null);
+  inmVariant = input<InmButtonVariant>(null); 
   disabled = input<boolean>(false);
   tabIndex = input<number | string | null>(null);
 }
