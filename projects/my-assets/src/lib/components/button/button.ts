@@ -3,24 +3,25 @@ import { Component, input } from "@angular/core";
 
 export type InmButtonSize = "sm" | "lg" | null;
 export type InmButtonType =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "danger"
-  | "warning"
-  | "info"
-  | "light"
-  | "dark"
-  | "unstyled"
-  | "outline-primary"
-  | "outline-secondary"
-  | "outline-success"
-  | "outline-danger"
-  | "outline-warning"
-  | "outline-info"
-  | "outline-light"
-  | "outline-dark"
-  | "link"
+  | "btn-primary"
+  | "btn-secondary"
+  | "btn-success"
+  | "btn-danger"
+  | "btn-warning"
+  | "btn-info"
+  | "btn-light"
+  | "btn-dark"
+  | "btn-unstyled"
+  | "theme-primary"
+  | "theme-secondary"
+  | "theme-success"
+  | "theme-danger"
+  | "theme-warning"
+  | "theme-info"
+  | "btn-light"
+  | "btn-dark"
+  | "theme-dark"
+  | "btn-link"
   | "list-item"
   | null;
 
@@ -43,24 +44,22 @@ export type InmButtonType =
     "[class.gap-2]": `inmType() !== 'list-item'`,
     "[class.btn-lg]": `inmSize() === 'lg'`,
     "[class.btn-sm]": `inmSize() === 'sm'`,
-    "[class.btn-primary]": `inmType() === 'primary'`,
-    "[class.btn-secondary]": `inmType() === 'secondary'`,
-    "[class.btn-success]": `inmType() === 'success'`,
-    "[class.btn-danger]": `inmType() === 'danger'`,
-    "[class.btn-warning]": `inmType() === 'warning'`,
-    "[class.btn-info]": `inmType() === 'info'`,
-    "[class.btn-light]": `inmType() === 'light'`,
-    "[class.btn-dark]": `inmType() === 'dark'`,
-    "[class.btn-link]": `inmType() === 'link'`,
-    "[class.btn-unstyled]": `inmType() === 'unstyled'`,
-    "[class.btn-outline-primary]": `inmType() === 'outline-primary'`,
-    "[class.btn-outline-secondary]": `inmType() === 'outline-secondary'`,
-    "[class.btn-outline-success]": `inmType() === 'outline-success'`,
-    "[class.btn-outline-danger]": `inmType() === 'outline-danger'`,
-    "[class.btn-outline-warning]": `inmType() === 'outline-warning'`,
-    "[class.btn-outline-info]": `inmType() === 'outline-info'`,
-    "[class.btn-outline-light]": `inmType() === 'outline-light'`,
-    "[class.btn-outline-dark]": `inmType() === 'outline-dark'`,
+    "[class.btn-primary]": `inmType() === 'btn-primary'`,
+    "[class.btn-secondary]": `inmType() === 'btn-secondary'`,
+    "[class.btn-success]": `inmType() === 'btn-success'`,
+    "[class.btn-danger]": `inmType() === 'btn-danger'`,
+    "[class.btn-warning]": `inmType() === 'btn-warning'`,
+    "[class.btn-info]": `inmType() === 'btn-info'`,
+    "[class.btn-light]": `inmType() === 'btn-light'`,
+    "[class.btn-dark]": `inmType() === 'btn-dark'`,
+    "[class.btn-link]": `inmType() === 'btn-link'`,
+    "[class.btn-unstyled]": `inmType() === 'btn-unstyled'`,
+    "[class.theme-primary]": `inmType() === 'theme-primary'`,
+    "[class.theme-secondary]": `inmType() === 'theme-secondary'`,
+    "[class.theme-success]": `inmType() === 'theme-success'`,
+    "[class.theme-danger]": `inmType() === 'theme-danger'`,
+    "[class.theme-warning]": `inmType() === 'theme-warning'`,
+    "[class.theme-info]": `inmType() === 'theme-info'`,
     "[class.list-group-item]": `inmType() === 'list-item'`,
     "[class.list-group-item-action]": `inmType() === 'list-item'`,
     "[class.btn-block]": `inmBlock()`,
@@ -76,7 +75,6 @@ export class Button {
   inmBlock = input<boolean>(false);
   inmSize = input<InmButtonSize>(null);
   inmType = input<InmButtonType>(null);
-
   disabled = input<boolean>(false);
   tabIndex = input<number | string | null>(null);
 }
